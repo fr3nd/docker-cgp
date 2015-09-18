@@ -11,5 +11,6 @@ RUN apt-get update && apt-get install -y \
       docker-php-ext-install json
 
 RUN a2enmod rewrite
+RUN rm -rf /var/www/html & mkdir -p /var/www/html
 WORKDIR /var/www/html
 RUN git clone https://github.com/pommi/CGP.git . && rm -rf .git
