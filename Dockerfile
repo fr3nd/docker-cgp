@@ -18,3 +18,4 @@ WORKDIR /var/www/html
 RUN git clone https://github.com/pommi/CGP.git . && \
     git checkout ${CGP_VERSION} && \
     rm -rf .git
+COPY config.local.php /var/www/html/conf/
