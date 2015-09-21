@@ -21,7 +21,7 @@ RUN git clone https://github.com/pommi/CGP.git && \
     git checkout ${CGP_VERSION} && \
     rm -rf .git
 WORKDIR /
-COPY config.local.php /opt/src/CGP/conf/
+COPY config.local.php /usr/src/CGP/conf/
 COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
