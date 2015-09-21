@@ -24,3 +24,20 @@ docker run \
   -p 8080:80 \
   fr3nd/cgp
 ```
+
+In case you run CGP behind an apache proxy, the URL_PREFIX environment variable
+defines the prefix location where to mount the web application.
+
+For example, this command will serve the application under 
+http://localhost:8080/cgp
+
+```
+docker run \
+  -it \
+  --rm \
+  -v /var/lib/collectd/rrd:/var/lib/collectd/rrd:ro \
+  -e cgp_graph_type=hybrid \
+  -e URL_PREFIX=/cgp \
+  -p 8080:80 \
+  fr3nd/cgp
+```

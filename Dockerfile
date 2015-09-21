@@ -11,11 +11,17 @@ RUN apt-get update && apt-get install -y \
       docker-php-ext-install json
 
 ENV CGP_VERSION b24eeac
+ENV URL_PREFIX /
 
 RUN a2enmod rewrite
-RUN rm -rf /var/www/html & mkdir -p /var/www/html
-WORKDIR /var/www/html
-RUN git clone https://github.com/pommi/CGP.git . && \
+RUN rm -rf /var/www/html
+WORKDIR /usr/src
+RUN git clone https://github.com/pommi/CGP.git && \
+    cd CGP && \
     git checkout ${CGP_VERSION} && \
     rm -rf .git
-COPY config.local.php /var/www/html/conf/
+WORKDIR /
+COPY config.local.php /opt/src/CGP/conf/
+COPY entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
